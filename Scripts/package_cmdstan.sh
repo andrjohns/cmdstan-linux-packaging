@@ -41,7 +41,7 @@ chroot /var/chroot/debian/$1 /bin/bash << EOF
 
   # Create Debian control file
   echo 'Package: cmdstan' >> cmdstan_deb/DEBIAN/control
-  echo 'Version: 2.27.0' >> cmdstan_deb/DEBIAN/control
+  echo 'Version: '\$(cat makefile | grep 'CMDSTAN_VERSION :=' | cut -d ":" -f 2 | cut -d " " -f 2) >> cmdstan_deb/DEBIAN/control
   echo 'Maintainer: Andrew Johnson <andrew.r.johnson@graduate.curtin.edu.au>' >> cmdstan_deb/DEBIAN/control
   echo 'Description: CmdStan is the command line interface to Stan' >> cmdstan_deb/DEBIAN/control
   echo 'Homepage: https://github.com/stan-dev/cmdstan' >> cmdstan_deb/DEBIAN/control

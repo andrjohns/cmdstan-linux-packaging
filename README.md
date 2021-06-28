@@ -1,6 +1,11 @@
 # cmdstan-linux-packaging
 Packaging `cmdstan` for distribution on Linux systems
 
+This requires QEMU & debootstrap for creating multiple architecture chroots.
+```
+apt install binfmt-support qemu qemu-user-static debootstrap
+```
+
 ## Steps
 
 ### Create chroot build environments for target architectures
