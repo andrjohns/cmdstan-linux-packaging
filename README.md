@@ -28,6 +28,8 @@ bash init_all_chroots.sh
 - Installs dependencies for building `stanc3` and `cmdstan`
 - Downloads `stanc3` and `cmdstan` repositories from GitHub
 
+See `Scripts/build_chroot.sh` for specific commands
+
 ### Package latest Github
 
 ```
@@ -39,3 +41,6 @@ bash package_all_archs.sh
 - Copies binaries and headers into directory format required for `.deb` package
 - Create package metadata and un/installation scripts
 - Build `.deb` package
+
+
+See `Scripts/update_cmdstan.sh` and `Scripts/package_cmdstan.sh` for specific commands
