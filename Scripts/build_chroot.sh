@@ -21,7 +21,8 @@ EOF
 
 chroot /var/chroot/debian/$1 /bin/bash << EOF
   mkdir -p /home/deb_build && cd /home/deb_build
-  git clone https://github.com/stan-dev/stanc3
+  git clone https://github.com/stan-dev/stanc3 && cd stanc3
+  bash scripts/install_dev_deps.sh
   git clone --recursive https://github.com/stan-dev/cmdstan
   echo SYS_LIBS=true >> cmdstan/make/local
 EOF
