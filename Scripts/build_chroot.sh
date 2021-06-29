@@ -7,7 +7,7 @@ mount -t proc proc /var/chroot/debian/$1/proc
 chroot /var/chroot/debian/$1 /bin/bash << EOF
   apt update
   apt install opam curl bzip2 git tar curl ca-certificates openssl \\
-              m4 bash libboost-math-dev libeigen3-dev \\
+              m4 bash libboost-math-dev libeigen3-dev libpcre3-dev \\
               libtbb-dev libsundials-dev opencl-headers -y
 EOF
 
