@@ -2,6 +2,8 @@
 
 mkdir -p /var/chroot/debian/$1
 debootstrap --arch $1 bullseye /var/chroot/debian/$1 http://deb.debian.org/debian/
+mkdir -p /var/chroot/debian/$1/home/deb_build/stanc3
+mount --bind ~/.stanc3/stanc3/ /var/chroot/debian/$1/home/deb_build/stanc3
 mount -t proc proc /var/chroot/debian/$1/proc
 
 chroot /var/chroot/debian/$1 /bin/bash << EOF
@@ -12,17 +14,12 @@ chroot /var/chroot/debian/$1 /bin/bash << EOF
 EOF
 
 chroot /var/chroot/debian/$1 /bin/bash << EOF
+  cd /home/deb_build/stanc3
   opam init --disable-sandboxing -y
-  opam switch create 4.07.0
   eval \$(opam env)
-  opam repo add internet https://opam.ocaml.org
-  opam update
-EOF
-
-chroot /var/chroot/debian/$1 /bin/bash << EOF
-  mkdir -p /home/deb_build && cd /home/deb_build
-  git clone https://github.com/stan-dev/stanc3 && cd stanc3
-  bash scripts/install_dev_deps.sh
-  git clone --recursive https://github.com/stan-dev/cmdstan
-  echo SYS_LIBS=true >> cmdstan/make/local
+  opam switch create 4.07.0
+  opam switch 4.07.0
+  eval \$(opam env)
+  bash -x scripts/install_build_deps.sh
+  eval \$(opam env)
 EOF
