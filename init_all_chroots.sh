@@ -4,6 +4,8 @@ mkdir -p ~/.stanc3 && cd ~/.stanc3
 git clone https://github.com/stan-dev/stanc3 && cd stanc3
 bash -x scripts/install_ocaml.sh
 bash -x scripts/install_build_deps.sh
+eval $(opam env)
+dune subst
 
 declare -a ArchArray=("arm64" "armel" "armhf" "i386"
                       "amd64" "mipsel" "mipsel64"
