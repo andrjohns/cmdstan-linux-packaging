@@ -2,7 +2,7 @@
 
 mkdir -p ~/.stanc3 && cd ~/.stanc3
 git clone https://github.com/stan-dev/stanc3 && cd stanc3
-bash -x scripts/install_ocaml.sh
+bash -x scripts/install_ocaml.sh --disable-sandboxing -y
 bash -x scripts/install_build_deps.sh
 eval $(opam env)
 dune subst
